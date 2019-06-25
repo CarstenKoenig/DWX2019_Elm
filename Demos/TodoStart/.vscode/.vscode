@@ -1,0 +1,3 @@
+{
+  "elm.formatCommand": "npx elm-format"
+}

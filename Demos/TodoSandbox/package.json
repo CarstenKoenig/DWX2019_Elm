@@ -1,0 +1,24 @@
+{
+  "name": "todo-elm",
+  "version": "1.0.0",
+  "description": "TodoMVC using Elm - Demonstration for DWX 2019",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel serve index.html --no-cache",
+    "build": "elm make ./src/Main.elm --output ./dist/app.js",
+    "release": "cp node_modules/tdodomvc-app-css/index.css ../Backend/static/index.css && cp node_modules/todomvc-common/base.css ../Backend/static/base.css && elm make ./src/Main.elm --optimize --output ../Backend/static/todo.js"
+  },
+  "author": "Carsten König",
+  "license": "ISC",
+  "devDependencies": {
+    "elm": "^0.19.0-no-deps",
+    "elm-format": "^0.8.1",
+    "elm-hot": "^1.1.0",
+    "node-elm-compiler": "^5.0.3",
+    "parcel-bundler": "^1.12.3"
+  },
+  "dependencies": {
+    "todomvc-app-css": "^2.2.0",
+    "todomvc-common": "^1.0.5"
+  }
+}
