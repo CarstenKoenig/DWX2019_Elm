@@ -6,7 +6,7 @@
   "scripts": {
     "start": "parcel serve index.html --no-cache",
     "build": "elm make ./src/Main.elm --output ./dist/app.js",
-    "release": "cp node_modules/tdodomvc-app-css/index.css ../Backend/static/index.css && cp node_modules/todomvc-common/base.css ../Backend/static/base.css && elm make ./src/Main.elm --optimize --output ../Backend/static/todo.js"
+    "release": "cp node_modules/todomvc-app-css/index.css ../Backend/static/index.css && cp node_modules/todomvc-common/base.css ../Backend/static/base.css && elm make ./src/Main.elm --optimize --output ../Backend/static/todo.js"
   },
   "author": "Carsten König",
   "license": "ISC",
