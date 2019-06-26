@@ -4,7 +4,6 @@ import Browser
 import Html as H exposing (Html)
 import Html.Attributes as Attr
 import Html.Events as Ev
-import Todos exposing (Todos)
 
 
 main : Program () Model Message
