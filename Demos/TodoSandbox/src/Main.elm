@@ -283,4 +283,6 @@ onFinish enterMessage escapeMessage =
 
 itemCount : Model -> Int
 itemCount model =
-    List.length (Todos.allTodos model.todos)
+    Todos.allTodos model.todos
+        |> List.filter (not << .completed)
+        |> List.length

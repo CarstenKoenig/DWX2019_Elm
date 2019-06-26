@@ -784,11 +784,11 @@ function _Debug_crash_UNUSED(identifier, fact1, fact2, fact3, fact4)
 
 function _Debug_regionToString(region)
 {
-	if (region.Z.K === region.ae.K)
+	if (region._.K === region.ae.K)
 	{
-		return 'on line ' + region.Z.K;
+		return 'on line ' + region._.K;
 	}
-	return 'on lines ' + region.Z.K + ' through ' + region.ae.K;
+	return 'on lines ' + region._.K + ' through ' + region.ae.K;
 }
 
 
@@ -2476,14 +2476,14 @@ function _Http_track(router, xhr, tracker)
 		if (xhr.c) { return; }
 		_Scheduler_rawSpawn(A2(elm$core$Platform$sendToSelf, router, _Utils_Tuple2(tracker, elm$http$Http$Sending({
 			aT: event.loaded,
-			Y: event.total
+			Z: event.total
 		}))));
 	});
 	xhr.addEventListener('progress', function(event) {
 		if (xhr.c) { return; }
 		_Scheduler_rawSpawn(A2(elm$core$Platform$sendToSelf, router, _Utils_Tuple2(tracker, elm$http$Http$Receiving({
 			aR: event.loaded,
-			Y: event.lengthComputable ? elm$core$Maybe$Just(event.total) : elm$core$Maybe$Nothing
+			Z: event.lengthComputable ? elm$core$Maybe$Just(event.total) : elm$core$Maybe$Nothing
 		}))));
 	});
 }
@@ -2852,8 +2852,8 @@ var _VirtualDom_mapEventRecord = F2(function(func, record)
 {
 	return {
 		r: func(record.r),
-		_: record._,
-		X: record.X
+		aa: record.aa,
+		Y: record.Y
 	}
 });
 
@@ -3122,10 +3122,10 @@ function _VirtualDom_makeCallback(eventNode, initialHandler)
 
 		var value = result.a;
 		var message = !tag ? value : tag < 3 ? value.a : value.r;
-		var stopPropagation = tag == 1 ? value.b : tag == 3 && value._;
+		var stopPropagation = tag == 1 ? value.b : tag == 3 && value.aa;
 		var currentEventNode = (
 			stopPropagation && event.stopPropagation(),
-			(tag == 2 ? value.b : tag == 3 && value.X) && event.preventDefault(),
+			(tag == 2 ? value.b : tag == 3 && value.Y) && event.preventDefault(),
 			eventNode
 		);
 		var tagger;
@@ -4510,7 +4510,7 @@ var author$project$Main$UrlRequested = function (a) {
 };
 var author$project$Todos$Item = F3(
 	function (id, text, completed) {
-		return {ac: completed, h: id, F: text};
+		return {V: completed, h: id, F: text};
 	});
 var author$project$Todos$Id = elm$core$Basics$identity;
 var elm$core$Basics$identity = function (x) {
@@ -6502,7 +6502,7 @@ var author$project$Todos$encodeItem = function (item) {
 				elm$json$Json$Encode$string(item.F)),
 				_Utils_Tuple2(
 				'finished',
-				elm$json$Json$Encode$bool(item.ac))
+				elm$json$Json$Encode$bool(item.V))
 			]));
 };
 var author$project$Api$Todos$update = F3(
@@ -6557,7 +6557,7 @@ var author$project$Todos$activeTodos = A2(
 	elm$core$Basics$composeL,
 	elm$core$List$filter(
 		function (item) {
-			return !item.ac;
+			return !item.V;
 		}),
 	author$project$Todos$toList);
 var author$project$Todos$allTodos = author$project$Todos$toList;
@@ -6565,7 +6565,7 @@ var author$project$Todos$completedTodos = A2(
 	elm$core$Basics$composeL,
 	elm$core$List$filter(
 		function (item) {
-			return item.ac;
+			return item.V;
 		}),
 	author$project$Todos$toList);
 var author$project$Main$filtered = function (filter) {
@@ -6658,7 +6658,7 @@ var author$project$Todos$setCompleted = function (completed) {
 			function (item) {
 				return _Utils_update(
 					item,
-					{ac: completed});
+					{V: completed});
 			}));
 };
 var author$project$Todos$setText = function (text) {
@@ -6972,9 +6972,18 @@ var author$project$Main$update = F2(
 		}
 	});
 var author$project$Main$ClearCompleted = {$: 12};
+var elm$core$Basics$not = _Basics_not;
 var author$project$Main$itemCount = function (model) {
 	return elm$core$List$length(
-		A2(author$project$Main$filtered, model.k, model.a));
+		A2(
+			elm$core$List$filter,
+			A2(
+				elm$core$Basics$composeL,
+				elm$core$Basics$not,
+				function ($) {
+					return $.V;
+				}),
+			A2(author$project$Main$filtered, model.k, model.a)));
 };
 var elm$core$Dict$isEmpty = function (dict) {
 	if (dict.$ === -2) {
@@ -7314,7 +7323,7 @@ var author$project$Main$viewItem = F2(
 					elm$html$Html$Attributes$classList(
 					_List_fromArray(
 						[
-							_Utils_Tuple2('completed', item.ac),
+							_Utils_Tuple2('completed', item.V),
 							_Utils_Tuple2('editing', isEditing)
 						]))
 				]),
@@ -7334,7 +7343,7 @@ var author$project$Main$viewItem = F2(
 								[
 									elm$html$Html$Attributes$class('toggle'),
 									elm$html$Html$Attributes$type_('checkbox'),
-									elm$html$Html$Attributes$checked(item.ac),
+									elm$html$Html$Attributes$checked(item.V),
 									elm$html$Html$Events$onCheck(
 									author$project$Main$CheckItem(item.h))
 								]),

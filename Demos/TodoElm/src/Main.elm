@@ -84,7 +84,9 @@ initialModel flags url navKey =
 
 itemCount : Model -> Int
 itemCount model =
-    List.length (filtered model.activeFilter model.todos)
+    filtered model.activeFilter model.todos
+        |> List.filter (not << .completed)
+        |> List.length
 
 
 filtered : Filter -> Todos -> List Todos.Item
